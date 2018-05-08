@@ -5,6 +5,7 @@
   "projects": {
     "ng-universal-demo": {
       "root": "",
+      "sourceRoot": "src",
       "projectType": "application",
       "architect": {
         "build": {
@@ -28,11 +29,19 @@
               }
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles/entry.scss"
             ],
             "scripts": []
           },
           "configurations": {
+            "hmr": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.hmr.ts"
+                }
+              ]
+            },
             "production": {
               "optimization": true,
               "outputHashing": "all",
@@ -58,6 +67,10 @@
             "browserTarget": "ng-universal-demo:build"
           },
           "configurations": {
+            "hmr": {
+              "browserTarget": "ng-universal-demo:build:hmr",
+              "hmrWarning": false
+            },
             "production": {
               "browserTarget": "ng-universal-demo:build:production"
             }
@@ -78,7 +91,7 @@
             "tsConfig": "src/tsconfig.spec.json",
             "scripts": [],
             "styles": [
-              "src/styles.css"
+              "src/styles/entry.scss"
             ],
             "assets": [
               {
@@ -150,7 +163,7 @@
       "inlineStyle": true,
       "inlineTemplate": true,
       "prefix": "app",
-      "styleext": "css"
+      "styleext": "scss"
     },
     "@schematics/angular:directive": {
       "spec": false,
